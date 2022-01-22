@@ -81,3 +81,12 @@ select {
   display: flex;
   justify-content: flex-end;
 }
+
+#exlist {
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Roboto";
+	font-size: 20px;
+	color: #4a4e4d;
+}
