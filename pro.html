@@ -43,8 +43,8 @@
 <h1 id="demo"></h1>
 </div>
 
-<div id="exlist">
-<p><ol id="exerlist"></ol>
+<div id="exerspace">
+<p><ol id="exerlist" start="0"></ol>
 <!-- ><p><img src="exercises.jpeg"  width="100%"</p>-->
 </div>
 
@@ -154,8 +154,10 @@ function sound(src) {
 }
 
 function showRandomWorkout(){
-	var exercises = ["Jump to the left","Step to the right","Hands on hips","Bend knees in time","Do time warp"];
-  	document.getElementById("myNumber").innerHTML = rando(1, 5);
+	var all_exercises = [["Bodyweight","Press ups","Squats","Crunches","Lunges","Plank"],["Bar and step","Bench press","Glute bridge","RDLs","Bicep curls","Squats"],["Two plates","Shoulder press","Weighted lunges","Rear fly","Weighted situp","Tricep extensions"],["Step","Step up leg lift","Tricep dips","Box jumps","Plank","Step and touch"],["Kettlebell","Swings","Single arm CnP","Goblet squat","Weighted situp","Deadlift"]];
+	rangen = rando(1, 5);
+	var exercises = all_exercises[rangen-1];
+  	document.getElementById("myNumber").innerHTML = rangen;
   	document.getElementById("exerlist").innerHTML = exercises.map(x => `<li>${x}</li>`).join('');
   }
 </script>
