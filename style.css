@@ -13,6 +13,12 @@ h1 {
   font-family: "Roboto";
 }
 
+h2 {
+  color: #3da4ab;
+  margin-left: 0px;
+  font-family: "Roboto";
+}
+
 button {
   background-color: #3da4ab;
   border: none;
@@ -83,12 +89,12 @@ select {
 }
 
 #exerspace {
-	width: 250px;
+	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
 	font-family: "Roboto";
 	font-size: 20px;
-	color: #4a4e4d;
+	color: #fe8a71;
 }
 
 #exerlist {
@@ -96,5 +102,6 @@ select {
 
 #exerlist li:first-child {
 	list-style: none;
-	color: #fe8a71;
+	color: #3da4ab;
+	font-size: 30px;
 }
