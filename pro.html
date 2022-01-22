@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="style.css"><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://randojs.com/1.0.0.js"></script></head>
+<body class="lightbg" onload="showRandomNumber();">
+
+<div id="myNumber"></div>
+		
+<div id="mainform">
+<form id="frm1" action="/action_page.php">
+<p>Number of exercises: <select id="exes" name="exes">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4" selected>4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select></p>
+  <p><select id="ons" name="ons">
+  <option value="10">10s on</option>
+  <option value="15">15s on</option>
+  <option value="20">20s on</option>
+  <option value="30" selected>30s on</option>
+  <option value="45">45s on</option>
+  <option value="60">60s on</option>
+</select>&nbsp;<select id="offs" name="offs">
+  <option value="5">5s off</option>
+  <option value="15" selected>15s off</option>
+  <option value="30">30s off</option>  
+</select></p>
+<p>Repeats: <select id="repeats" name="repeats">
+  <option value="1" selected>Once</option>
+  <option value="2">Twice</option>
+  <option value="3">Thrice</option>
+</select></p>
+
+<!--<input type="submit" value="Submit">-->
+</form> 
+<button onclick="myFunction()" id="workoutButton">Generate Workout</button>
+</div>
+
+<div id="timers">
+<h1 id="demo"></h1>
+</div>
+<!--function myFunction() {
+  var x = document.getElementById("frm1");
+  var text = "";
+  var i;
+  for (i = 0; i < x.length ;i++) {
+    text += x.elements[i].value + "<br>";
+  }
+  document.getElementById("demo").innerHTML = text;
+} -->
+
+<script>
+
+function myFunction() {
+document.getElementById("workoutButton").disabled = true;
+document.getElementById("workoutButton").classList.add("buttonDisabled");
+document.body.classList.add("lightbg");
+document.body.classList.remove("darkbg");
+// Set the amount we're counting down from
+var countDownLength = document.getElementById("ons").value;
+var waitLength = document.getElementById("offs").value;
+var repeats = document.getElementById("repeats").value;
+var exercises = document.getElementById("exes").value;
+var status = "waiting";
+var doingTimeLeft = countDownLength;
+var waitingTimeLeft = waitLength;
+var repno = 1;
+var exno = 1;
+var beep = new sound("noise.mp3");
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+	newstatus = status;
+	if (repeats == 1) {
+		repstring = "";
+		}
+	else {
+		repstring = "Repeat " + repno + " of " + repeats;
+		}
+	if (status == "doing") {
+		if (doingTimeLeft == countDownLength) {
+			beep.play();
+			}
+		document.body.classList.remove("lightbg");
+		document.body.classList.add("darkbg");
+		console.log("Ex:", exno, "Rep:", repno);
+		document.getElementById("demo").innerHTML = "<div id=\"clock\">" + doingTimeLeft + "</div><p>Exercise  " + exno + " of " + exercises + "</p><p>" + repstring + "</p>";
+		doingTimeLeft -=1;
+		// If the count down is finished, write some text and update flags
+		if (doingTimeLeft < 0) {
+			newstatus = "waiting";
+			doingTimeLeft = countDownLength;
+			exno += 1;
+			if (exno > exercises) {
+				repno +=1;
+				exno = 1;
+			}
+			if (repno > repeats) {
+				clearInterval(x);
+				document.getElementById("demo").innerHTML = "Done!";
+				beep.play();
+				document.getElementById("workoutButton").disabled = false;
+				document.getElementById("workoutButton").classList.remove("buttonDisabled");
+				return;
+			}
+		}
+	}
+	if (status == "waiting") {
+		if (waitingTimeLeft == waitLength) {
+			beep.play();
+			}
+		document.body.classList.add("lightbg");
+		document.body.classList.remove("darkbg");
+		document.getElementById("demo").innerHTML = "<div id=\"clock\">" + waitingTimeLeft + "</div><p>Get ready for:<br/>Exercise  " + exno + " of " + exercises + "</p><p>" + repstring + "</p>";
+		waitingTimeLeft -=1;
+		// If the count down is finished, write some text and switch back to doing
+		if (waitingTimeLeft < 0) {
+			newstatus = "doing";
+			waitingTimeLeft = waitLength;
+		}
+	}
+  	status = newstatus;
+
+  // If status = waiting, display & decrement offs value
+  // If that gets to 0, change status to 'doing'; reset offs value
+  // If status = doing (and repeats is not 0), display & decrement ons value
+  // If that gets to 0, change status to 'waiting'; reset ons value; decrement repeats
+ 
+	}, 1000);}	
+	
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+
+function showRandomNumber(){
+  document.getElementById("myNumber").innerHTML = rando(1, 5);
+  }
+</script>
+</body>
+</html>
