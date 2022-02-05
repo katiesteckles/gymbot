@@ -154,10 +154,20 @@ function sound(src) {
 }
 
 function showRandomWorkout(){
-	var all_exercises = [["Bodyweight","Press ups","Squats","Fast feet","Lunges","Plank"],["Bar &amp; step","Bench press","Glute bridge","RDLs","Bicep curls","Squats"],["Two plates","Shoulder press","Weighted lunges","Rear fly","Weighted situp","Tricep extensions"],["Step","Step up leg lift","Inclined pressup","Box jumps","Plank","Step and touch"],["Kettlebell","Swings","Single arm CnP","Goblet squat","Weighted situp","Deadlift"]];
-	rangen = rando(1, 5);
-	var exercises = all_exercises[rangen-1];
-  	document.getElementById("myNumber").innerHTML = rangen;
+	var full_exercises = [["Bodyweight",["Press ups","Plank w sho taps","Bird dog","Wall squat"],["Squats","Fast feet","Lunges","High knees"],["Plank","Crunches","Sit ups"]],["Bar &amp; step",["Bench press","Bicep curls","Shoulder press","Upright row"],["Squats","Step up","Lunges","Calf raise"],["RDLs","Glute Bridge","Overhead situp"]],["Two plates",["Shoulder press","Rear fly","Tricep kickbacks","Curl to press"],["Weighted lunges","Wted rev lunges","Calf raise","Goblet squat"],["Tricep extensions","Weighted situp","Russian twist"]],["Step",["Inc pressup","Offset pressup","Dec pressup","Pigeon stretch"],["Step up knee lift","Box jumps","Step and touch","Double knee lift"],["Plank","Walking GB","Glute bridge"]],["Kettlebell",["Swings","Alt press","Bent over row","Alt curl"],["Goblet squat","Deadlift","Reverse lunges","Side lunges"],["Weighted situp","Russian twist","Round the body"]]]
+
+	wo_rangen = rando(1, 5) -1;
+	var exercises = [full_exercises[wo_rangen][0]];
+	arms_rangen = rando(1, 4) - 1;
+	legs_rangen = rando(1, 4) - 1;
+	arms2_rangen = (arms_rangen + rando(1,3)) % 4;
+	legs2_rangen = (legs_rangen + rando(1,3)) % 4;
+	exercises.push(full_exercises[wo_rangen][1][arms_rangen]);
+	exercises.push(full_exercises[wo_rangen][2][legs_rangen]);
+	exercises.push(full_exercises[wo_rangen][3][rando(1, 3)-1]);
+	exercises.push(full_exercises[wo_rangen][1][arms2_rangen]);
+	exercises.push(full_exercises[wo_rangen][2][legs2_rangen]);
+  	document.getElementById("myNumber").innerHTML = wo_rangen;
   	document.getElementById("exerlist").innerHTML = exercises.map(x => `<li>${x}</li>`).join('');
   }
 </script>
