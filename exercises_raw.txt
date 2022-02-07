@@ -3,3 +3,6 @@
 ["Two plates",["Shoulder press","Rear fly","Tricep kickbacks","Curl to press"],["Weighted lunges","Weighted reverse lunges","Calf raise","Goblet squat"],["Tricep extensions","Weighted situp","Russian twist"]]
 ["Step",["Inclined pressup","Offset pressups","Declined pressups","Pigeon stretch"],["Step up knee lift","Box jumps","Step and touch","Double knee lift"],["Plank","Walking glute bridge","Glute bridge"]]
 ["Kettlebell",["Swings","Alternating press","Bent over row","Alternatin curl"],["Goblet squat","Deadlift","Reverse lunges","Side lunges"],["Weighted situp","Russian twist","Round the body"]]
+
+
+	var all_exercises = [["Bodyweight","Press ups","Squats","Fast feet","Lunges","Plank"],["Bar &amp; step","Bench press","Glute bridge","RDLs","Bicep curls","Squats"],["Two plates","Shoulder press","Weighted lunges","Rear fly","Weighted situp","Tricep extensions"],["Step","Step up leg lift","Inclined pressup","Box jumps","Plank","Step and touch"],["Kettlebell","Swings","Single arm CnP","Goblet squat","Weighted situp","Deadlift"]];
