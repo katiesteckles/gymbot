@@ -29,7 +29,6 @@ button {
   display: inline-block;
   font-size: 16px;
   font-family: "Roboto";
-  margin-bottom: 30px;
 }
 
 select {
@@ -45,10 +44,12 @@ select {
 #mainform {
 	text-align: center;
 	margin-top: 30px;
+	padding-bottom: 5px;
 }
 
 #timers {
 	text-align: center;
+	padding-top: 30px;
 }
 
 #clock {
@@ -92,6 +93,7 @@ select {
 	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 300px;
 	font-family: "Roboto";
 	font-size: 20px;
 	color: #fe8a71;

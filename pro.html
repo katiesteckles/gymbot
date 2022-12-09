@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="style.css"><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://randojs.com/1.0.0.js"></script></head>
+<head><link rel="stylesheet" href="style.css?202211261858"><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://randojs.com/1.0.0.js"></script></head>
 <body class="lightbg" onload="showRandomWorkout();" bgcolor=#000>
 
 <div id="myNumber"></div>
@@ -46,7 +46,6 @@
 <div id="exerspace">
   <p><ol id="exerlist" start="0"></ol></p>
   <p id="cardio"></p>
-<!-- ><p><img src="exercises.jpeg"  width="100%"</p>-->
 </div>
 
 <!--function myFunction() {
@@ -62,83 +61,84 @@
 <script>
 
 function myFunction() {
-document.getElementById("workoutButton").disabled = true;
-document.getElementById("workoutButton").classList.add("buttonDisabled");
-document.body.classList.add("lightbg");
-document.body.classList.remove("darkbg");
+  document.getElementById("workoutButton").disabled = true;
+  document.getElementById("workoutButton").classList.add("buttonDisabled");
+  document.body.classList.add("lightbg");
+  document.body.classList.remove("darkbg");
 
-// Set the amount we're counting down from
-var countDownLength = document.getElementById("ons").value;
-var waitLength = document.getElementById("offs").value;
-var repeats = document.getElementById("repeats").value;
-var exercises = document.getElementById("exes").value;
-var status = "waiting";
-var doingTimeLeft = countDownLength;
-var waitingTimeLeft = waitLength;
-var repno = 1;
-var exno = 1;
-var beep = new sound("noise.mp3");
+  // Set the amount we're counting down from
+  var countDownLength = document.getElementById("ons").value;
+  var waitLength = document.getElementById("offs").value;
+  var repeats = document.getElementById("repeats").value;
+  var exercises = document.getElementById("exes").value;
+  var status = "waiting";
+  var doingTimeLeft = countDownLength;
+  var waitingTimeLeft = waitLength;
+  var repno = 1;
+  var exno = 1;
+  var beep = new sound("noise.mp3");
 
-// Update the count down every 1 second
-var x = setInterval(function() {
-	newstatus = status;
-	if (repeats == 1) {
-		repstring = "";
-		}
-	else {
-		repstring = "Repeat " + repno + " of " + repeats;
-		}
-	if (status == "doing") {
-		if (doingTimeLeft == countDownLength) {
-			beep.play();
-			}
-		document.body.classList.remove("lightbg");
-		document.body.classList.add("darkbg");
-		console.log("Ex:", exno, "Rep:", repno);
-		document.getElementById("demo").innerHTML = "<div id=\"clock\">" + doingTimeLeft + "</div><p>Exercise  " + exno + " of " + exercises + "</p><p>" + repstring + "</p>";
-		doingTimeLeft -=1;
-		// If the count down is finished, write some text and update flags
-		if (doingTimeLeft < 0) {
-			newstatus = "waiting";
-			doingTimeLeft = countDownLength;
-			exno += 1;
-			if (exno > exercises) {
-				repno +=1;
-				exno = 1;
-			}
-			if (repno > repeats) {
-				clearInterval(x);
-				document.getElementById("demo").innerHTML = "Done!";
-				beep.play();
-				document.getElementById("workoutButton").disabled = false;
-				document.getElementById("workoutButton").classList.remove("buttonDisabled");
-				return;
-			}
-		}
-	}
-	if (status == "waiting") {
-		if (waitingTimeLeft == waitLength) {
-			beep.play();
-			}
-		document.body.classList.add("lightbg");
-		document.body.classList.remove("darkbg");
-		document.getElementById("demo").innerHTML = "<div id=\"clock\">" + waitingTimeLeft + "</div><p>Get ready for:<br/>Exercise  " + exno + " of " + exercises + "</p><p>" + repstring + "</p>";
-		document.getElementById("exerspace").scrollIntoView(false);
-		waitingTimeLeft -=1;
-		// If the count down is finished, write some text and switch back to doing
-		if (waitingTimeLeft < 0) {
-			newstatus = "doing";
-			waitingTimeLeft = waitLength;
-		}
-	}
-  	status = newstatus;
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+      newstatus = status;
+      if (repeats == 1) {
+          repstring = "";
+          }
+      else {
+          repstring = "Repeat " + repno + " of " + repeats;
+          }
+      if (status == "doing") {
+          if (doingTimeLeft == countDownLength) {
+              beep.play();
+              }
+          document.body.classList.remove("lightbg");
+          document.body.classList.add("darkbg");
+          console.log("Ex:", exno, "Rep:", repno);
+          document.getElementById("demo").innerHTML = "<div id=\"clock\">" + doingTimeLeft + "</div><p>Exercise  " + exno + " of " + exercises + "</p><p>" + repstring + "</p>";
+          document.getElementById("timers").scrollIntoView(true);
+          doingTimeLeft -=1;
+          // If the count down is finished, write some text and update flags
+          if (doingTimeLeft < 0) {
+              newstatus = "waiting";
+              doingTimeLeft = countDownLength;
+              exno += 1;
+              if (exno > exercises) {
+                  repno +=1;
+                  exno = 1;
+              }
+              if (repno > repeats) {
+                  clearInterval(x);
+                  document.getElementById("demo").innerHTML = "Done!";
+                  beep.play();
+                  document.getElementById("workoutButton").disabled = false;
+                  document.getElementById("workoutButton").classList.remove("buttonDisabled");
+                  return;
+              }
+          }
+      }
+      if (status == "waiting") {
+          if (waitingTimeLeft == waitLength) {
+              beep.play();
+              }
+          document.body.classList.add("lightbg");
+          document.body.classList.remove("darkbg");
+          document.getElementById("demo").innerHTML = "<div id=\"clock\">" + waitingTimeLeft + "</div><p>Get ready for:<br/>Exercise  " + exno + " of " + exercises + "</p><p>" + repstring + "</p>";
+          document.getElementById("timers").scrollIntoView(true);
+          waitingTimeLeft -=1;
+          // If the count down is finished, write some text and switch back to doing
+          if (waitingTimeLeft < 0) {
+              newstatus = "doing";
+              waitingTimeLeft = waitLength;
+          }
+      }
+      status = newstatus;
 
-  // If status = waiting, display & decrement offs value
-  // If that gets to 0, change status to 'doing'; reset offs value
-  // If status = doing (and repeats is not 0), display & decrement ons value
-  // If that gets to 0, change status to 'waiting'; reset ons value; decrement repeats
- 
-	}, 1000);}	
+    // If status = waiting, display & decrement offs value
+    // If that gets to 0, change status to 'doing'; reset offs value
+    // If status = doing (and repeats is not 0), display & decrement ons value
+    // If that gets to 0, change status to 'waiting'; reset ons value; decrement repeats
+
+      }, 1000);}
 	
 function sound(src) {
   this.sound = document.createElement("audio");
@@ -170,7 +170,7 @@ function showRandomWorkout(){
 	                       ["Two plates",
 	                            ["Shoulder press","Rear fly","Tricep kickbacks","Curl to press"],
 	                            ["Weighted lunges","Thrusters","Calf raise","Goblet squat"],
-	                            ["Crunches","Weighted situp","Halo"]
+	                            ["Crunches","Weighted situp","Overhead situp"]
 	                            ],
 	                       ["Step",
 	                            ["Inc pressup","Offset pressup","Dec pressup","Pigeon stretch"],
@@ -182,7 +182,7 @@ function showRandomWorkout(){
 	                            ["Goblet squat","Deadlift","Reverse lunges","Side lunges"],
 	                            ["Weighted situp","Flutter kicks","Round the body"]
 	                            ],
-	                       ["+ Cycling 2km","+ Rowing 500m","+ Xtrain 1km","+ 200 Stairs","+ Xtrain -1km"]
+	                       ["+ Cycling 2km","+ Rowing 500m","+ Xtrain 0.5km","+ 200 Stairs","+ Xtrain -0.5km"]
 	                        ]
 
 	wo_rangen = rando(1, 5);
